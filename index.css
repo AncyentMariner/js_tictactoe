@@ -1,0 +1,16 @@
+#board {
+  border-collapse: collapse;
+}
+
+#game {
+  margin-left: 6em;
+}
+
+td {
+  height: 140px;
+  width: 140px;
+  border: solid;
+  font-size: 6rem;
+  vertical-align: middle;
+  text-align: center;
+}
