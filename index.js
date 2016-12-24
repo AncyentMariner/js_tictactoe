@@ -37,6 +37,8 @@ function markGameMove(e) {
     moves += 1;
     checkForWinner(this);
     currentTurn = currentTurn === playerOne ? playerTwo : playerOne;
+  } else if (winner === true) {
+    alert('Game is over');
   } else {
     alert('this space is taken');
   }
