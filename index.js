@@ -7,19 +7,14 @@ function makeBoard() {
   const tbody = document.createElement('tbody');
   table.id = "board";
 
+  let counter = 0;
   for (let i = 0; i < boardSize;i++) {
     let row = tbody.insertRow();
     for (let j = 0; j < boardSize;j++) {
       let td = row.insertCell();
-      td.classList.add('cell', 'column' + j, 'row' + i);
+      td.id = (counter++);
+      td.classList.add('cell');
       td.addEventListener('click', markGameMove);
-      //add identifiers for diagonals
-      if (i === j) {
-        td.classList.add('diagonalRight');
-      }
-      if (j === boardSize - i - 1) {
-        td.classList.add('diagonalLeft');
-      }
     }
   }
   table.appendChild(tbody);
@@ -37,75 +32,54 @@ let moves = 1;
 function markGameMove(e) {
   if (!e.target.classList.contains('marked') && e.target.classList.contains('cell')) {
     e.target.innerHTML = currentTurn;
+    e.target.value = currentTurn;
     e.target.classList.add('marked');
     currentTurn = currentTurn === playerOne ? playerTwo : playerOne;
     moves += 1;
-    //Have to add opposite class because move was made by opponent
-    if (currentTurn === 'O') {
-      e.target.classList.add('X');
-    } else {
-      e.target.classList.add('O');
-    }
-    // checkForWinner(this);
+    checkForWinner(this);
   } else {
     alert('this space is taken');
   }
 }
 
-// function filterX(elem) {
+function checkForWinner(clicked) {
+  let squares = Array.from(document.querySelectorAll('.marked'));
+  // let markedSquares = squares.filter(filterSquares);
+
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+
+  //wait until first player has moved three times to check
+  if (squares.length > 4) {
+    for (let i = 0; i < lines.length; i++) {
+      const [a, b, c] = lines[i];
+      let id_a = document.getElementById(a);
+      let id_b = document.getElementById(b);
+      let id_c = document.getElementById(c);
+
+      if (id_a.value && id_a.value === id_b.value && id_a.value === id_c.value) {
+        console.log('works?');
+        return id_a;
+      }
+    }
+    return null;
+  }
+}
+//
+// function filterSquares(elem) {
 //   if (elem.classList.contains('X')) {
+//     elem.value = 'x';
+//     return elem;
+//   } else if (elem.classList.contains('O')) {
+//     elem.value = 'o';
 //     return elem;
 //   }
-// }
-//
-// function filter(square, classes) {
-//   if (square.classList.contains(classes)) {
-//     return square;
-//   }
-// }
-
-
-// function contains(selector, text) {
-//   var elements = document.querySelectorAll(selector);
-//   return [].filter.call(elements, function(element){
-//     return RegExp(text).test(element.textContent);
-//   });
-// }
-
-// function checkForWinner(clicked) {
-//   let squares = Array.from(document.querySelectorAll('.marked'));
-//   let memberOf = clicked.className.split(/\s+/);
-
-  // if (squares.length > 4) {
-  //   for (let i = 0; i < memberOf.length; i++) {
-  //     let testClass = `.${memberOf[i]}`;
-  //     let count = contains(testClass, currentTurn);
-  //     console.log(count);
-  //     if (count.length == boardSize) {
-  // 			return true;
-  // 		}
-  //   }
-  // }
-  // return false;
-
-
-  // let squares = Array.from(document.querySelectorAll('.marked'));
-  // let xSquares = squares.filter(filterX);
-  // let oSquares = squares.filter(filterO);
-  // let xMoves = [];
-  // let oMoves = [];
-
-  // console.log({xSquares, oSquares});
-
-  //start checking when first player has marked their third square
-  // if (squares.length > 4) {
-  //
-  //   for (let i = 0; i < xSquares.length; i++) {
-  //     xMoves.push(xSquares[i].parentNode.rowIndex);
-  //   }
-  //
-  //   for (let i = 0; i < oSquares.length; i++) {
-  //     oMoves.push(oSquares[i].parentNode.rowIndex);
-  //   }
-  // }
 // }
