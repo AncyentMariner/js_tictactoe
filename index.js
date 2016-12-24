@@ -49,6 +49,7 @@ function reset() {
   display.innerHTML = '';
   gameBoard.outerHTML = '';
   winner = false;
+  moves = 0;
   makeBoard();
 }
 
