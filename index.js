@@ -1,6 +1,6 @@
 //make game board
 const content = document.getElementById('game');
-const scoreBoard = document.querySelector('#score');
+const display = document.querySelector('#display');
 
 function makeBoard() {
   const table = document.createElement('table');
@@ -26,16 +26,17 @@ makeBoard();
 const playerOne = 'X';
 const playerTwo = 'O';
 let currentTurn = playerOne;
-let moves = 1;
+let moves = 0;
+let winner = false;
 
 function markGameMove(e) {
-  if (!e.target.classList.contains('marked') && e.target.classList.contains('cell')) {
+  if (!e.target.classList.contains('marked') && winner === false && e.target.classList.contains('cell')) {
     e.target.innerHTML = currentTurn;
     e.target.value = currentTurn;
     e.target.classList.add('marked');
+    moves += 1;
     checkForWinner(this);
     currentTurn = currentTurn === playerOne ? playerTwo : playerOne;
-    moves += 1;
   } else {
     alert('this space is taken');
   }
@@ -43,7 +44,9 @@ function markGameMove(e) {
 
 function reset() {
   const gameBoard = document.querySelector('#board');
+  display.innerHTML = '';
   gameBoard.outerHTML = '';
+  winner = false;
   makeBoard();
 }
 
@@ -60,12 +63,12 @@ function checkForWinner() {
       let id_c = document.getElementById(c);
 
       if (id_a.value && id_a.value === id_b.value && id_a.value === id_c.value) {
-        scoreBoard.innerHTML = `${currentTurn} wins!`;
-        return id_a;
+        display.innerHTML = `${currentTurn} wins!`;
+        winner = true;
       }
 
       if (moves === 9) {
-        scoreBoard.innerHTML = 'The game was a draw';
+        display.innerHTML = 'Draw';
       }
     }
     return null;
