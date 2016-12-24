@@ -68,12 +68,9 @@ function checkForWinner() {
       if (id_a.value && id_a.value === id_b.value && id_a.value === id_c.value) {
         display.innerHTML = `${currentTurn} wins!`;
         winner = true;
-      }
-
-      if (moves === 9) {
+      } else if (moves === 9 && winner === false) {
         display.innerHTML = 'Draw';
       }
     }
-    return null;
   }
 }
