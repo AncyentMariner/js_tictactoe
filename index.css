@@ -1,9 +1,21 @@
 #board {
   border-collapse: collapse;
+  background: #f4f5f7;
 }
 
 #game {
   margin-left: 6em;
+}
+
+#score {
+  float: right;
+  margin-right: 300px;
+  background: #f4f5f7;
+}
+
+body {
+  /*background:url('bg.png');*/
+  background: radial-gradient(white, rgb(26, 130, 242));
 }
 
 td {
@@ -13,4 +25,5 @@ td {
   font-size: 6rem;
   vertical-align: middle;
   text-align: center;
+  background-clip: content-box;
 }
