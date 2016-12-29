@@ -1,10 +1,14 @@
 //make game board
 const content = document.getElementById('game');
 const display = document.querySelector('#display');
+const playerOne = 'X';
+const playerTwo = 'O';
+let currentTurn = playerOne;
 
 function makeBoard() {
   const table = document.createElement('table');
   const tbody = document.createElement('tbody');
+  const turn = document.getElementById('turn');
   table.id = "board";
 
   let counter = 0;
@@ -19,13 +23,11 @@ function makeBoard() {
   }
   table.appendChild(tbody);
   content.appendChild(table);
+  turn.innerHTML = currentTurn;
 }
 makeBoard();
 
 //mark player moves and check for winner
-const playerOne = 'X';
-const playerTwo = 'O';
-let currentTurn = playerOne;
 let moves = 0;
 let winner = false;
 
@@ -37,6 +39,7 @@ function markGameMove(e) {
     moves += 1;
     checkForWinner(this);
     currentTurn = currentTurn === playerOne ? playerTwo : playerOne;
+    turn.innerHTML = currentTurn;
   } else if (winner === true) {
     alert('Game is over');
   } else {

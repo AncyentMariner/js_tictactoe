@@ -11,12 +11,18 @@
       <h2 id="title">Glorious tic tac toe fun times</h2>
     </div>
   </nav>
-  <div>
+  <div id="main">
+    <div id="description">
+      <p>This is a two-player tic-tac-toe game. Take turns and see if you can beat your friends.</p>
+    </div>
+    <div id="game"></div>
     <div id="score">
+      <div>
+        Current turn:<p id="turn"></p>
+      </div>
       <div id="display"></div>
       <button id="reset" onclick="reset()">reset board</button>
     </div>
-    <div id="game"></div>
   </div>
 </body>
 

@@ -1,6 +1,6 @@
 nav {
   background: #212e42;
-  margin: 0 0 2em 0;
+  margin: 0;
   width: 100%;
   color: #f4f5f7;
 }
@@ -9,8 +9,18 @@ nav {
   font-size: 2em;
 }
 
+#description {
+  font-size: 24px;
+  padding: 10px;
+}
+
 .links {
   padding: 1em;
+}
+
+#main {
+  display: flex;
+  flex-direction: column;
 }
 
 #board {
@@ -19,22 +29,20 @@ nav {
 }
 
 #game {
-  margin-left: 6em;
   padding: 2em;
-}
-
-#score {
-  float: right;
-  margin-right: 300px;
-  padding-top: 50px;
 }
 
 #display {
   height: 98px;
   width: 275px;
   font-size: 2em;
-  vertical-align: middle;
-  justify-content: center;
+  text-align: center;
+}
+
+#score {
+  padding: 2em;
+  display: flex;
+  align-content: space-around;
 }
 
 #reset {
@@ -43,7 +51,6 @@ nav {
   font-size: 1.6em;
   text-decoration: none;
   transition-duration: 1.1s;
-  padding: 13px 20px 13px 20px;
   width: 200px;
   border-radius: 4px;
 }
