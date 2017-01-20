@@ -25,6 +25,7 @@ function makeBoard() {
   content.appendChild(table);
   turn.innerHTML = currentTurn;
 }
+
 makeBoard();
 
 //mark player moves and check for winner
